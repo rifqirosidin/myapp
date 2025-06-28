@@ -20,3 +20,6 @@ restart: down up
 
 ps:
 	$(COMPOSE) ps
+
+deploy:
+	./scripts/deploy.sh
