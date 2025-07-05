@@ -27,7 +27,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode(Message{"error", "DB connection failed"})
+		_ = json.NewEncoder(w).Encode(Message{"error", "DB connection failed"})
 		return
 	}
 	defer db.Close()
@@ -35,11 +35,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	err = db.Ping()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode(Message{"error", "Cannot ping DB"})
+		_ = json.NewEncoder(w).Encode(Message{"error", "Cannot ping DB"})
 		return
 	}
 
-	json.NewEncoder(w).Encode(Message{"success", "Connected to MySQL"})
+	_ = json.NewEncoder(w).Encode(Message{"success", "Connected to MySQL"})
 }
 
 func main() {
